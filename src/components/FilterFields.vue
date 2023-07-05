@@ -21,7 +21,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import Calendar from '../components/Calendar.vue'
 import { useBookingCalculateStore } from '../stores/bookingCalculateStore'
 
@@ -36,7 +35,7 @@ function calendarSelectedUpdated(selection) {
 .filter-fields-holder {
     display: flex;
     justify-content: center;
-    background-image: url("images/hotel.jpeg");
+    background-image: url("/images/hotel.jpg");
     background-size: cover;
 }
 
