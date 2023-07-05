@@ -9,12 +9,8 @@ const bookingCalculateStore = useBookingCalculateStore()
 
 <template>
     <div class="hotel-list">
-        <hotelCard 
-            v-for="hotel in hotelsDataStore.hotels" 
-            :key="hotel.id" 
-            :hotelId="hotel.id" 
-            :class="{highlight: bookingCalculateStore.getLowerPrice().hotel.id === hotel.id}" 
-        />
+        <hotelCard v-for="hotel in hotelsDataStore.hotels" :key="hotel.id" :hotelId="hotel.id"
+            :class="{ highlight: bookingCalculateStore.lowerPrice.hotel.id === hotel.id }" />
     </div>
 </template>
 
@@ -27,6 +23,7 @@ const bookingCalculateStore = useBookingCalculateStore()
     /*outline: 3px solid rgb(70, 86, 105);*/
     padding: 20px;
 }
+
 .highlight {
     outline: 10px solid gold !important;
     transform: scale(1.1);

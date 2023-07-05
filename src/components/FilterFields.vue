@@ -3,13 +3,17 @@
         <div class="filter-fields">
             <div class="filter-column">
                 <div class="checkbox">
-                    <input class="checkbox-input" type="checkbox" name="reward" value="is-reward" v-model="bookingCalculateStore.isReward">
+                    <input class="checkbox-input" type="checkbox" name="reward" value="is-reward"
+                        v-model="bookingCalculateStore.isReward">
                     <label class="checkbox-label" for="reward"> I am in the loyalty program</label>
                 </div>
                 <p class="message" v-if="bookingCalculateStore.isSelectedDatesEmpty()">
                     Please<br />select the day or days<br />you are planning to book in
                 </p>
-                <p class="message" v-else v-html="getLowerPriceString()"></p>
+                <p class="message" v-else>
+                    Best price: {{ bookingCalculateStore.lowerPrice.hotel.name }}<br />Total value: ${{
+                        bookingCalculateStore.lowerPrice.totalPrice }}
+                </p>
             </div>
             <Calendar class="filter-column" @selected-updated="calendarSelectedUpdated" />
         </div>
@@ -25,11 +29,6 @@ const bookingCalculateStore = useBookingCalculateStore()
 
 function calendarSelectedUpdated(selection) {
     bookingCalculateStore.selectedDates = selection
-}
-function getLowerPriceString() {
-    const lowerPrice = bookingCalculateStore.getLowerPrice()
-    const lowerPriceString = `Best price: ${lowerPrice.hotel.name}<br/>value: $${lowerPrice.totalPrice}`
-    return lowerPriceString
 }
 </script>
 
