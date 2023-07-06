@@ -9,8 +9,3 @@ import HotelList from '../components/HotelList.vue'
     <HotelList />
   </body>
 </template>
-
-<style>
-
-
-</style>

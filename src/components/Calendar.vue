@@ -14,10 +14,10 @@
                 </thead>
                 <tbody>
                     <tr v-for="(week, index) in calendar" :key="index">
-                        <td v-for="day in week" :key="day.date" class="calendar-day" :tabindex="!isDisabled(day) ? '0' : '-1'"
-                            :class="{ selected: isSelected(day), disabled: isDisabled(day), empty: (!day.date) }"
+                        <td v-for="day in week" :key="day" class="calendar-day" :tabindex="!isDisabled(day) ? '0' : '-1'"
+                            :class="{ selected: isSelected(day), disabled: isDisabled(day), empty: (!day) }"
                             @click="selectDate(day)" @keydown.space.prevent="selectDate(day)">
-                            <span v-if="day">{{ day.date }}</span>
+                            <span v-if="day">{{ day.getDate() }}</span>
                         </td>
                     </tr>
                 </tbody>
@@ -52,7 +52,7 @@ export default {
             let week = [];
 
             for (let i = 0; i < firstDay; i++) {
-                week.push({ date: null });
+                week.push(null);
             }
 
             for (let day = 1; day <= daysInMonth; day++) {
@@ -60,17 +60,20 @@ export default {
                     calendar.push(week);
                     week = [];
                 }
-                week.push({ date: day, year, month });
+                week.push(new Date(year, month, day));
             }
 
             for (let i = lastDay; i < 6; i++) {
-                week.push({ date: null });
+                week.push(null);
             }
 
             calendar.push(week);
 
             this.calendar = calendar;
             this.month = new Date(year, month).toLocaleString('default', { month: 'long', year: 'numeric' });
+        },
+        compareDates(dateA, dateB) {
+            return dateA.getDate() === dateB.getDate() && dateA.getMonth() === dateB.getMonth() && dateA.getFullYear() === dateB.getFullYear();
         },
         prevMonth() {
             this.monthOffset--
@@ -81,32 +84,24 @@ export default {
             this.generateCalendar();
         },
         selectDate(day) {
-            if (day && !this.isDisabled(day) && day.date) {
-                const selectedDate = this.selected.find(date => date.year === day.year && date.month === day.month && date.date === day.date);
+            if (day && !this.isDisabled(day)) {
+                const selectedDate = this.selected.find(date => this.compareDates(date, day));
                 if (selectedDate) {
-                    this.selected = this.selected.filter(date => date !== selectedDate);
+                    this.selected = this.selected.filter(date => !this.compareDates(date, selectedDate));
                 } else {
                     this.selected.push(day);
                 }
             }
-            this.$emit('selected-updated', this.selectedDates);
+            this.$emit('selected-updated', this.selected);
         },
         isSelected(day) {
-            return this.selected.some(date => date.year === day.year && date.month === day.month && date.date === day.date);
+            return day && this.selected.some(date => this.compareDates(date, day));
         },
         isDisabled(day) {
-            const selectedDate = new Date(day.year, day.month, day.date);
-            return selectedDate < this.yesterday || day.date === null;// || selectedDate.getMonth() > this.today.getMonth() + 1;
-        },
-        getWeekDay(day) {
-            console.log(Date.getWeekDay(day))
-            return true
+            return !day || day < this.yesterday;
         },
     },
     computed: {
-        selectedDates() {
-            return this.selected.map(date => new Date(date.year, date.month, date.date));
-        },
         yesterday() {
             return (new Date().setDate(this.today.getDate() - 1));
         }
