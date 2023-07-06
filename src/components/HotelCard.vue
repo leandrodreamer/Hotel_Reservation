@@ -22,10 +22,6 @@
                 <h4>Reward:</h4>
                 <p>${{ hotel.priceWeekend.reward }}</p>
             </div>
-            <div class="price">
-                <h4>Selected price:</h4>
-                <p>${{ bookingCalculateStore.calculatePriceOfHotel(hotel) }}</p>
-            </div>
         </div>
     </div>
     <div v-else>
