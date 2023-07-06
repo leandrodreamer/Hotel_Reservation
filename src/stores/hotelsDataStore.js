@@ -33,7 +33,7 @@ export const useHotelsDataStore = defineStore('hotelsData', () => {
     return new Hotel(name, slug, id, rating, priceWeekday, priceWeekend, image);
   }
 
-  function loadHotelsFromJsonList(jsonList) {
+  function createHotelListFromJsonList(jsonList) {
     const hotels = [];
     for (const object of jsonList) {
       const hotel = createHotelFromObject(object);
@@ -42,16 +42,23 @@ export const useHotelsDataStore = defineStore('hotelsData', () => {
     return hotels;
   }
   
-  let hotels = loadHotelsFromJsonList(hotelsDataJson.hotels)
+  const hotels = createHotelListFromJsonList(hotelsDataJson.hotels)
 
 
-  function getHotelById(id) {
-    return hotels.find(hotel => hotel.id === id);
+  function getHotelById(id, hotelsList = hotels) {
+    return hotelsList.find(hotel => hotel.id === id);
   }
 
-  function getHotelBySlug(slug) {
-    return hotels.find(hotel => hotel.slug === slug);
+  function getHotelBySlug(slug, hotelsList = hotels) {
+    return hotelsList.find(hotel => hotel.slug === slug);
   }
 
-  return { getHotelById, getHotelBySlug, hotels }
+  return { 
+    hotels, 
+    getHotelById, 
+    getHotelBySlug, 
+    createPriceFromObject,
+    createHotelFromObject,
+    createHotelListFromJsonList
+  }
 })

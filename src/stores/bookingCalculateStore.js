@@ -30,8 +30,8 @@ export const useBookingCalculateStore = defineStore('bookingCalculate', () => {
         return totalPrice;
     }
 
-    const lowerPrice = computed(function () {
-        const cheapest = hotelsDataStore.hotels.reduce((cheapest, hotel) => {
+    function getCheaper(hotelList){
+        const cheapest = hotelList.reduce((cheapest, hotel) => {
             const totalPrice = calculatePriceOfHotel(hotel);
 
             if (!cheapest || totalPrice < cheapest.totalPrice || (totalPrice === cheapest.totalPrice && hotel.rating > cheapest.hotel.rating)) {
@@ -42,13 +42,16 @@ export const useBookingCalculateStore = defineStore('bookingCalculate', () => {
         }, null);
 
         return cheapest;
-    });
+    }
+
+    const lowerPrice = computed(function () { return getCheaper(hotelsDataStore.hotels); });
 
     return {
         selectedDates,
         isReward,
         isSelectedDatesEmpty,
         lowerPrice,
-        calculatePriceOfHotel
+        calculatePriceOfHotel,
+        getCheaper
     }
 })
