@@ -8,15 +8,15 @@
         <div class="prices content">
             <div class="price">
                 <h4>Weekday:</h4>
-                <p>${{ hotel.prices.weekday.regular }}</p>
+                <p>${{ hotel.priceWeekday.regular }}</p>
                 <h4>Reward:</h4>
-                <p>${{ hotel.prices.weekday.reward }}</p>
+                <p>${{ hotel.priceWeekday.reward }}</p>
             </div>
             <div class="price">
                 <h4>Weekend:</h4>
-                <p>${{ hotel.prices.weekend.regular }}</p>
+                <p>${{ hotel.priceWeekend.regular }}</p>
                 <h4>Reward:</h4>
-                <p>${{ hotel.prices.weekend.reward }}</p>
+                <p>${{ hotel.priceWeekend.reward }}</p>
             </div>
         </div>
     </div>

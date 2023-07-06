@@ -15,8 +15,8 @@ export const useBookingCalculateStore = defineStore('booking-calculate', () => {
         const lowerPrice = hotelsDataStore.hotels.reduce((cheapest, hotel) => {
             const totalPrice = selectedDates.value.reduce((total, date) => {
                 const dayOfWeek = date.getDay();
-                const dayString = (dayOfWeek === 0 || dayOfWeek === 6) ? "weekend" : "weekday"
-                const price = isReward.value ? hotel.prices[dayString].reward : hotel.prices[dayString].regular;
+                const priceString = (dayOfWeek === 0 || dayOfWeek === 6) ? "priceWeekend" : "priceWeekday"
+                const price = isReward.value ? hotel[priceString].reward : hotel[priceString].regular;
                 return total + price;
             }, 0);
 
