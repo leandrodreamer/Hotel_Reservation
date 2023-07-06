@@ -42,7 +42,7 @@ function calendarSelectedUpdated(selection) {
 .filter-fields {
     display: flex;
     flex-wrap: wrap;
-    background-color: white;
+    background-color: var(--background-color);
     margin: 20px;
     padding: 20px;
     border-radius: 20px;

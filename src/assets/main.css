@@ -1,7 +1,8 @@
 :root {
   --primary-color: rgb(70, 86, 105);
+  --text-color: #444444;
+  --background-color: whitesmoke;
 }
-
 
 *,
 *::before,
@@ -13,8 +14,8 @@
 
 body {
   min-height: 100vh;
-  color: var(--color-text);
-  background: var(--color-background);
+  color: var(--text-color);
+  background: var(--background-color);
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
