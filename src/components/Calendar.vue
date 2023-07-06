@@ -14,17 +14,14 @@
                 </thead>
                 <tbody>
                     <tr v-for="(week, index) in calendar" :key="index">
-                        <td v-for="day in week" :key="day.date"
-                            :class="{ selected: isSelected(day), disabled: isDisabled(day) }" @click="selectDate(day)">
+                        <td v-for="day in week" :key="day.date" class="calendar-day"
+                            :class="{ selected: isSelected(day), disabled: isDisabled(day), empty: (!day.date) }" @click="selectDate(day)">
                             <span v-if="day">{{ day.date }}</span>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <!--<div class="selected-dates">
-            <p>Selected Dates: {{ selectedDates }}</p>
-        </div>-->
     </div>
 </template>
   
@@ -98,7 +95,7 @@ export default {
         },
         isDisabled(day) {
             const selectedDate = new Date(day.year, day.month, day.date);
-            return selectedDate < this.today;// || selectedDate.getMonth() > this.today.getMonth() + 1;
+            return selectedDate < this.yesterday || day.date === null;// || selectedDate.getMonth() > this.today.getMonth() + 1;
         },
         getWeekDay(day) {
             console.log(Date.getWeekDay(day))
@@ -108,6 +105,9 @@ export default {
     computed: {
         selectedDates() {
             return this.selected.map(date => new Date(date.year, date.month, date.date));
+        },
+        yesterday() {
+            return (new Date().setDate(this.today.getDate() - 1));
         }
     }
 };
@@ -151,6 +151,10 @@ td {
     color: #ccc;
     cursor: not-allowed;
     background-color: #ff000021;
+}
+.empty {
+    opacity: 0;
+    cursor: default;
 }
 
 .selected-dates {
