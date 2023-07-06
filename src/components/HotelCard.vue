@@ -2,7 +2,9 @@
     <div class="hotel-card" :style="{ 'background-image': `url(${hotel.image})` }" v-if="hotel">
         <div class="bg-overlay"></div>
         <div class="title content">
-            <h2>{{ hotel.name }}</h2> <p v-if="!bookingCalculateStore.isSelectedDatesEmpty">(${{ bookingCalculateStore.calculatePriceOfHotel(hotel) }})</p>
+            <h2>{{ hotel.name }}</h2>
+            <p v-if="!bookingCalculateStore.isSelectedDatesEmpty">(${{ bookingCalculateStore.calculatePriceOfHotel(hotel)
+            }})</p>
         </div>
         <div class="stars content">
             <span class="star" v-for="n in hotel.rating" :key="n">&#9733;</span>
@@ -61,7 +63,7 @@ export default defineComponent({
 });
 </script>
   
-<style scoped>
+<style lang="scss" scoped>
 .hotel-card {
     position: relative;
     background-color: #b6f7ff;
@@ -73,63 +75,63 @@ export default defineComponent({
     max-width: 300px;
     min-width: 250px;
     margin: 20px;
-    outline: 3px solid rgb(70, 86, 105)
-}
+    outline: 3px solid var(--primary-color);
 
-.bg-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    opacity: 70%;
-    z-index: 1;
-}
+    .bg-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        opacity: 0.8;
+        z-index: 1;
+    }
 
-.title {
-    display: flex;
-}
-.title p {
-    opacity: 40%;
-    margin-left: 10px;
-}
+    .title {
+        display: flex;
 
-.content {
-    position: relative;
-    z-index: 2;
-}
+        p {
+            opacity: 40%;
+            margin-left: 10px;
+        }
+    }
 
-.stars {
-    margin-bottom: 10px;
-    background-color: #000000b0;
-    padding: 0 6px;
-    width: fit-content;
-    border-radius: 20px;
-}
+    .content {
+        position: relative;
+        z-index: 2;
+    }
 
-.star {
-    color: gold;
+    .stars {
+        margin-bottom: 10px;
+        background-color: #000000b0;
+        padding: 0 6px;
+        width: fit-content;
+        border-radius: 20px;
 
-}
+        .star {
+            color: gold;
+        }
+    }
 
-.prices {
-    display: flex;
-    flex-wrap: wrap;
-}
+    .prices {
+        display: flex;
+        flex-wrap: wrap;
 
-.price {
-    flex: 1 1 50%;
-    padding: 10px;
-}
+        .price {
+            flex: 1 1 50%;
+            padding: 10px;
 
-h4 {
-    margin: 0;
-}
+            h4 {
+                margin: 0;
+            }
 
-p {
-    margin: 0;
-    font-weight: bold;
+            p {
+                margin: 0;
+                font-weight: bold;
+            }
+        }
+    }
 }
 </style>
   

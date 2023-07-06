@@ -15,7 +15,8 @@
                 <tbody>
                     <tr v-for="(week, index) in calendar" :key="index">
                         <td v-for="day in week" :key="day.date" class="calendar-day"
-                            :class="{ selected: isSelected(day), disabled: isDisabled(day), empty: (!day.date) }" @click="selectDate(day)">
+                            :class="{ selected: isSelected(day), disabled: isDisabled(day), empty: (!day.date) }"
+                            @click="selectDate(day)">
                             <span v-if="day">{{ day.date }}</span>
                         </td>
                     </tr>
@@ -113,52 +114,49 @@ export default {
 };
 </script>
   
-<style scoped>
+<style lang="scss" scoped>
 .calendar {
     max-width: 400px;
     margin: 0 auto;
     min-width: 320px;
-}
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
 
-table {
-    width: 100%;
-}
+    table {
+        width: 100%;
+    }
 
-th {
-    text-align: center;
-    padding: 5px;
-}
+    th,
+    td {
+        text-align: center;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 30px;
+    }
 
-td {
-    text-align: center;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 30px;
-}
+    th {
+        padding: 5px;
+    }
 
-.selected {
-    background-color: #d1ff7db4;
-}
+    td.selected {
+        background-color: #d1ff7db4;
+    }
 
-.disabled {
-    color: #ccc;
-    cursor: not-allowed;
-    background-color: #ff000021;
-}
-.empty {
-    opacity: 0;
-    cursor: default;
-}
+    td.disabled {
+        color: #ccc;
+        cursor: not-allowed;
+        background-color: #ff000021;
+    }
 
-.selected-dates {
-    margin-top: 20px;
+    td.empty {
+        opacity: 0;
+        cursor: default;
+    }
 }
 </style>
   

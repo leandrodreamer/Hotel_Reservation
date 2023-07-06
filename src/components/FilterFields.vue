@@ -31,7 +31,7 @@ function calendarSelectedUpdated(selection) {
 }
 </script>
 
-<style>
+<style lang="scss">
 .filter-fields-holder {
     display: flex;
     justify-content: center;
@@ -46,7 +46,7 @@ function calendarSelectedUpdated(selection) {
     margin: 20px;
     padding: 20px;
     border-radius: 20px;
-    outline: 3px solid rgb(70, 86, 105);
+    outline: 3px solid var(--primary-color);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
 }
 
@@ -76,11 +76,11 @@ function calendarSelectedUpdated(selection) {
     cursor: pointer;
     margin-right: 10px;
     transition: border-color 0.3s ease;
-}
 
-.checkbox-input:checked {
-    border-color: #6c63ff;
-    background-color: #6c63ff;
+    &:checked {
+        border-color: var(--primary-color);
+        background-color: var(--primary-color);
+    }
 }
 
 .checkbox-label {
@@ -93,7 +93,6 @@ function calendarSelectedUpdated(selection) {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /*justify-content: center;*/
     gap: 30%;
     padding: 10px 0;
 }

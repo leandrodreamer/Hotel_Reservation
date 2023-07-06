@@ -14,7 +14,7 @@ const bookingCalculateStore = useBookingCalculateStore()
     </div>
 </template>
 
-<style>
+<style lang="scss">
 .hotel-list {
     display: flex;
     flex-wrap: wrap;
@@ -23,8 +23,13 @@ const bookingCalculateStore = useBookingCalculateStore()
     padding: 20px;
 }
 
+.hotel-card{
+    transition: outline-color 0.3s, transform 0.3s;
+}
+
 .highlight {
     outline: 10px solid gold !important;
     transform: scale(1.1);
+    transition: outline-color 0.3s, transform 0.3s;
 }
 </style>
