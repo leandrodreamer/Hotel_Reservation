@@ -2,7 +2,7 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useHotelsDataStore } from '../stores/hotelsDataStore'
 
-export const useBookingCalculateStore = defineStore('booking-calculate', () => {
+export const useBookingCalculateStore = defineStore('bookingCalculate', () => {
     const hotelsDataStore = useHotelsDataStore()
     const selectedDates = ref([])
     const isReward = ref(false)
@@ -11,14 +11,28 @@ export const useBookingCalculateStore = defineStore('booking-calculate', () => {
         return selectedDates.value.length === 0;
     })
 
+    function isWeekend(date) {
+        const dayOfWeek = date.getDay();
+        return (dayOfWeek === 0 || dayOfWeek === 6)
+    }
+
+    function calculatePriceOfHotel(hotel) {
+        if (!hotel) {
+            return 0;
+        }
+
+        const totalPrice = selectedDates.value.reduce((total, date) => {
+            const priceString = isWeekend(date) ? "priceWeekend" : "priceWeekday";
+            const price = isReward.value ? hotel[priceString].reward : hotel[priceString].regular;
+            return total + price;
+        }, 0);
+
+        return totalPrice;
+    }
+
     const lowerPrice = computed(function () {
-        const lowerPrice = hotelsDataStore.hotels.reduce((cheapest, hotel) => {
-            const totalPrice = selectedDates.value.reduce((total, date) => {
-                const dayOfWeek = date.getDay();
-                const priceString = (dayOfWeek === 0 || dayOfWeek === 6) ? "priceWeekend" : "priceWeekday"
-                const price = isReward.value ? hotel[priceString].reward : hotel[priceString].regular;
-                return total + price;
-            }, 0);
+        const cheapest = hotelsDataStore.hotels.reduce((cheapest, hotel) => {
+            const totalPrice = calculatePriceOfHotel(hotel);
 
             if (!cheapest || totalPrice < cheapest.totalPrice || (totalPrice === cheapest.totalPrice && hotel.rating > cheapest.hotel.rating)) {
                 return { hotel, totalPrice };
@@ -26,13 +40,15 @@ export const useBookingCalculateStore = defineStore('booking-calculate', () => {
 
             return cheapest;
         }, null);
-        return lowerPrice
-    })
+
+        return cheapest;
+    });
 
     return {
         selectedDates,
         isReward,
         isSelectedDatesEmpty,
-        lowerPrice
+        lowerPrice,
+        calculatePriceOfHotel
     }
 })

@@ -42,7 +42,8 @@ export const useHotelsDataStore = defineStore('hotelsData', () => {
     return hotels;
   }
   
-  const hotels = loadHotelsFromJsonList(hotelsDataJson.hotels)
+  let hotels = loadHotelsFromJsonList(hotelsDataJson.hotels)
+
 
   function getHotelById(id) {
     return hotels.find(hotel => hotel.id === id);

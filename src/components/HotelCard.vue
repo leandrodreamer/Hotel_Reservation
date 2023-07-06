@@ -1,7 +1,9 @@
 <template>
     <div class="hotel-card" :style="{ 'background-image': `url(${hotel.image})` }" v-if="hotel">
         <div class="bg-overlay"></div>
-        <h2 class="content">{{ hotel.name }}</h2>
+        <div class="title content">
+            <h2>{{ hotel.name }}</h2> <p v-if="!bookingCalculateStore.isSelectedDatesEmpty">(${{ bookingCalculateStore.calculatePriceOfHotel(hotel) }})</p>
+        </div>
         <div class="stars content">
             <span class="star" v-for="n in hotel.rating" :key="n">&#9733;</span>
         </div>
@@ -18,6 +20,10 @@
                 <h4>Reward:</h4>
                 <p>${{ hotel.priceWeekend.reward }}</p>
             </div>
+            <div class="price">
+                <h4>Selected price:</h4>
+                <p>${{ bookingCalculateStore.calculatePriceOfHotel(hotel) }}</p>
+            </div>
         </div>
     </div>
     <div v-else>
@@ -28,6 +34,7 @@
 <script>
 import { defineComponent } from 'vue';
 import { useHotelsDataStore } from '../stores/hotelsDataStore';
+import { useBookingCalculateStore } from '../stores/bookingCalculateStore';
 
 export default defineComponent({
     props: {
@@ -38,9 +45,11 @@ export default defineComponent({
     },
     setup(props) {
         const hotelsDataStore = useHotelsDataStore();
+        const bookingCalculateStore = useBookingCalculateStore();
 
         return {
-            hotelsDataStore
+            hotelsDataStore,
+            bookingCalculateStore
         };
     },
 
@@ -76,6 +85,14 @@ export default defineComponent({
     background-color: white;
     opacity: 70%;
     z-index: 1;
+}
+
+.title {
+    display: flex;
+}
+.title p {
+    opacity: 40%;
+    margin-left: 10px;
 }
 
 .content {
