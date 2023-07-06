@@ -12,9 +12,6 @@ export const useBookingCalculateStore = defineStore('booking-calculate', () => {
     })
 
     const lowerPrice = computed(function () {
-        if (this.isSelectedDatesEmpty) {
-            return { hotel: { id: -1 }, totalPrice: 0 }
-        }
         const lowerPrice = hotelsDataStore.hotels.reduce((cheapest, hotel) => {
             const totalPrice = selectedDates.value.reduce((total, date) => {
                 const dayOfWeek = date.getDay();
