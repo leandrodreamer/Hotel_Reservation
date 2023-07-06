@@ -24,12 +24,12 @@ const bookingCalculateStore = useBookingCalculateStore()
 }
 
 .hotel-card{
-    transition: outline-color 0.3s, transform 0.3s;
+    transition: outline-color 0.3s, transform 0.3s, outline 0.3s;
 }
 
 .highlight {
     outline: 10px solid gold !important;
     transform: scale(1.1);
-    transition: outline-color 0.3s, transform 0.3s;
+    transition: outline-color 0.3s, transform 0.3s, outline 0.3s;
 }
 </style>

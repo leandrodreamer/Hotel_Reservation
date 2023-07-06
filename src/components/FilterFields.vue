@@ -3,7 +3,7 @@
         <div class="filter-fields">
             <div class="filter-column">
                 <div class="checkbox">
-                    <input class="checkbox-input" type="checkbox" name="reward" value="is-reward"
+                    <input class="checkbox-input" type="checkbox" id="reward" name="reward" value="is-reward"
                         v-model="bookingCalculateStore.isReward">
                     <label class="checkbox-label" for="reward"> I am in the loyalty program</label>
                 </div>
