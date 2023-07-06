@@ -14,9 +14,9 @@
                 </thead>
                 <tbody>
                     <tr v-for="(week, index) in calendar" :key="index">
-                        <td v-for="day in week" :key="day.date" class="calendar-day"
+                        <td v-for="day in week" :key="day.date" class="calendar-day" :tabindex="!isDisabled(day) ? '0' : '-1'"
                             :class="{ selected: isSelected(day), disabled: isDisabled(day), empty: (!day.date) }"
-                            @click="selectDate(day)">
+                            @click="selectDate(day)" @keydown.space.prevent="selectDate(day)">
                             <span v-if="day">{{ day.date }}</span>
                         </td>
                     </tr>

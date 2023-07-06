@@ -4,7 +4,7 @@
             <div class="filter-column">
                 <div class="checkbox">
                     <input class="checkbox-input" type="checkbox" id="reward" name="reward" value="is-reward"
-                        v-model="bookingCalculateStore.isReward">
+                        tabindex="0" v-model="bookingCalculateStore.isReward">
                     <label class="checkbox-label" for="reward"> I am in the loyalty program</label>
                 </div>
                 <p class="message" v-if="bookingCalculateStore.isSelectedDatesEmpty">
@@ -59,6 +59,10 @@ function calendarSelectedUpdated(selection) {
     align-items: center;
     gap: 5px;
     margin-top: 20px;
+    border-radius: 4px;
+    &:focus-within {
+        outline: 2px solid black;
+    }
 }
 
 .message {
