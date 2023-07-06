@@ -7,12 +7,12 @@ export const useBookingCalculateStore = defineStore('booking-calculate', () => {
     const selectedDates = ref([])
     const isReward = ref(false)
 
-    function isSelectedDatesEmpty() {
+    const isSelectedDatesEmpty = computed(function () {
         return selectedDates.value.length === 0;
-    }
+    })
 
     const lowerPrice = computed(function () {
-        if (isSelectedDatesEmpty()) {
+        if (this.isSelectedDatesEmpty) {
             return { hotel: { id: -1 }, totalPrice: 0 }
         }
         const lowerPrice = hotelsDataStore.hotels.reduce((cheapest, hotel) => {

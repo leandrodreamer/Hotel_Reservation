@@ -7,7 +7,7 @@
                         v-model="bookingCalculateStore.isReward">
                     <label class="checkbox-label" for="reward"> I am in the loyalty program</label>
                 </div>
-                <p class="message" v-if="bookingCalculateStore.isSelectedDatesEmpty()">
+                <p class="message" v-if="bookingCalculateStore.isSelectedDatesEmpty">
                     Please<br />select the day or days<br />you are planning to book in
                 </p>
                 <p class="message" v-else>
