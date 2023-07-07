@@ -27,7 +27,7 @@
 </template>
   
 <script>
-import { compareDates } from "../services/date-service"
+import { isSameDate } from "../services/date-service"
 
 export default {
     props: {
@@ -93,9 +93,9 @@ export default {
         },
         selectDate(day) {
             if (day && !this.isDisabled(day)) {
-                const selectedDate = this.selected.find(date => compareDates(date, day));
+                const selectedDate = this.selected.find(date => isSameDate(date, day));
                 if (selectedDate) {
-                    this.selected = this.selected.filter(date => !compareDates(date, selectedDate));
+                    this.selected = this.selected.filter(date => !isSameDate(date, selectedDate));
                 } else {
                     this.selected.push(day);
                 }
@@ -103,7 +103,7 @@ export default {
             this.$emit('selected-updated', this.selected);
         },
         isSelected(day) {
-            return day && this.selected.some(date => compareDates(date, day));
+            return day && this.selected.some(date => isSameDate(date, day));
         },
         isDisabled(day) {
             return !day || day < this.yesterday;

@@ -7,6 +7,6 @@ export const isWeekend = (date) => {
 };
 
 
-export const compareDates = (dateA, dateB) => {
+export const isSameDate = (dateA, dateB) => {
     return dateA.getDate() === dateB.getDate() && dateA.getMonth() === dateB.getMonth() && dateA.getFullYear() === dateB.getFullYear();
 };
