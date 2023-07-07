@@ -1,11 +1,12 @@
 <template>
-    <RouterLink :to="`/${hotel.id}/${hotel.slug}`" class="hotel-card" :style="{ 'background-image': `url(${hotel.image})` }"
+    <RouterLink :to="`/hotel/${hotel.id}/${hotel.slug}`" class="hotel-card" :style="{ 'background-image': `url(${hotel.image})` }"
         v-if="hotel">
         <div class="bg-overlay"></div>
         <div class="title content">
             <h2>{{ hotel.name }}</h2>
-            <p v-if="!bookingCalculateStore.isSelectedDatesEmpty">(${{ bookingCalculateStore.calculatePriceOfHotel(hotel)
-            }})</p>
+            <p v-if="!bookingStore.isSelectedDatesEmpty">(${{ 
+                bookingStore.calculatePriceOfHotel(hotel, bookingStore.selectedDates, bookingStore.isReward) 
+                }})</p>
         </div>
         <StarsRating class="content" :stars="hotel.rating" />
         <div class="prices content">
@@ -32,7 +33,7 @@
 import { defineComponent } from 'vue';
 import { RouterLink } from 'vue-router';
 import { useHotelsDataStore } from '../stores/hotelsDataStore';
-import { useBookingCalculateStore } from '../stores/bookingCalculateStore';
+import { useBookingStore } from '../stores/bookingStore';
 import StarsRating from '@/components/StarsRating.vue';
 
 export default defineComponent({
@@ -44,11 +45,11 @@ export default defineComponent({
     },
     setup(props) {
         const hotelsDataStore = useHotelsDataStore();
-        const bookingCalculateStore = useBookingCalculateStore();
+        const bookingStore = useBookingStore();
 
         return {
             hotelsDataStore,
-            bookingCalculateStore
+            bookingStore
         };
     },
 
@@ -122,4 +123,4 @@ export default defineComponent({
     }
 }
 </style>
-  
+  ../stores/bookingStore

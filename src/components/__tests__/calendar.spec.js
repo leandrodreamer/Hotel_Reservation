@@ -14,14 +14,20 @@ describe('Calendar', () => {
         expect(wrapper.vm.month).toBeTruthy();
     });
 
-    it('test select and unselect a date', async () => {
+    it('test select a date', async () => {
         const wrapper = createWrapper();
 
         const dayToSelect = wrapper.find('.calendar-day:not(.disabled)');
-        expect(dayToSelect).toBeDefined()
         await dayToSelect.trigger('click');
 
         expect(wrapper.vm.selected.length).toEqual(1);
+    });
+
+    it('test select and then unselect a date', async () => {
+        const wrapper = createWrapper();
+
+        const dayToSelect = wrapper.find('.calendar-day:not(.disabled)');
+        await dayToSelect.trigger('click');
 
         await dayToSelect.trigger('click');
 

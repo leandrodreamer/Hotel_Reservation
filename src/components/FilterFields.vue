@@ -4,18 +4,18 @@
             <div class="filter-column">
                 <div class="checkbox">
                     <input class="checkbox-input" type="checkbox" id="reward" name="reward" value="is-reward"
-                        tabindex="0" v-model="bookingCalculateStore.isReward">
+                        tabindex="0" v-model="bookingStore.isReward">
                     <label class="checkbox-label" for="reward"> I am in the loyalty program</label>
                 </div>
-                <p class="message" v-if="bookingCalculateStore.isSelectedDatesEmpty">
+                <p class="message" v-if="bookingStore.isSelectedDatesEmpty">
                     Please<br />select the day or days<br />you are planning to book in
                 </p>
                 <p class="message" v-else>
-                    Best price: {{ bookingCalculateStore.lowerPrice.hotel.name }}<br />Total value: ${{
-                        bookingCalculateStore.lowerPrice.totalPrice }}
+                    Best price: {{ bookingStore.cheapest.hotel.name }}<br />Total value: ${{
+                        bookingStore.cheapest.totalPrice }}
                 </p>
             </div>
-            <Calendar :propSelected="bookingCalculateStore.selectedDates" class="filter-column" @selected-updated="calendarSelectedUpdated" />
+            <Calendar :propSelected="bookingStore.selectedDates" class="filter-column" @selected-updated="calendarSelectedUpdated" />
         </div>
     </div>
 </template>
@@ -23,16 +23,16 @@
 <script setup>
 import { onMounted } from 'vue';
 import Calendar from '../components/Calendar.vue'
-import { useBookingCalculateStore } from '../stores/bookingCalculateStore'
+import { useBookingStore } from '../stores/bookingStore'
 
-const bookingCalculateStore = useBookingCalculateStore()
+const bookingStore = useBookingStore()
 
 function calendarSelectedUpdated(selection) {
-    bookingCalculateStore.selectedDates = selection
+    bookingStore.selectedDates = selection
 }
-Calendar.selected = bookingCalculateStore.selectedDates
+Calendar.selected = bookingStore.selectedDates
 onMounted(() => {
-    Calendar.selected = bookingCalculateStore.selectedDates
+    Calendar.selected = bookingStore.selectedDates
 })
 </script>
 
@@ -105,4 +105,4 @@ onMounted(() => {
     gap: 30%;
     padding: 10px 0;
 }
-</style>
+</style>../stores/bookingStore

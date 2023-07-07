@@ -1,16 +1,16 @@
 <script setup>
 import hotelCard from '../components/HotelCard.vue'
 import { useHotelsDataStore } from '../stores/hotelsDataStore'
-import { useBookingCalculateStore } from '../stores/bookingCalculateStore'
+import { useBookingStore } from '../stores/bookingStore'
 
 const hotelsDataStore = useHotelsDataStore()
-const bookingCalculateStore = useBookingCalculateStore()
+const bookingStore = useBookingStore()
 </script>
 
 <template>
     <div class="hotel-list">
         <hotelCard v-for="hotel in hotelsDataStore.hotels" :key="hotel.id" :hotelId="hotel.id"
-            :class="{ highlight: !bookingCalculateStore.isSelectedDatesEmpty && bookingCalculateStore.lowerPrice.hotel.id === hotel.id }" />
+            :class="{ highlight: !bookingStore.isSelectedDatesEmpty && bookingStore.cheapest.hotel.id === hotel.id }" />
     </div>
 </template>
 
@@ -32,4 +32,4 @@ const bookingCalculateStore = useBookingCalculateStore()
     transform: scale(1.1);
     transition: outline-color 0.3s, transform 0.3s, outline 0.3s;
 }
-</style>
+</style>../stores/bookingStore
