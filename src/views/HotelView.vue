@@ -32,7 +32,7 @@ import StarsRating from '@/components/StarsRating.vue';
 const hotelsDataStore = useHotelsDataStore();
 const route = useRoute();
 
-const hotel = hotelsDataStore.getHotelById(parseInt(route.params.id));
+const hotel = hotelsDataStore.getHotelInStoreById(parseInt(route.params.id));
 </script>
 
 <style lang="scss" scoped>

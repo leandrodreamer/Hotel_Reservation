@@ -55,7 +55,7 @@ export default defineComponent({
 
     computed: {
         hotel() {
-            return this.hotelsDataStore.getHotelById(this.hotelId);
+            return this.hotelsDataStore.getHotelInStoreById(this.hotelId);
         }
     },
     components: {

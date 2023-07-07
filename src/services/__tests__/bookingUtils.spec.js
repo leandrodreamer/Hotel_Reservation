@@ -1,36 +1,20 @@
-import { describe, it, expect, beforeEach } from 'vitest'
-import { setActivePinia, createPinia } from 'pinia'
-import { useHotelsDataStore } from '@/stores/hotelsDataStore'
-import { calculatePriceOfHotel, getCheapest } from '@/services/bookingUtils'
+import { describe, it, expect } from 'vitest'
+import { HotelBuilder, createPriceFromObject } from '../hotelsUtils'
+import { calculatePriceOfHotel, getCheapest } from '../bookingUtils'
 
 
 describe('Booking calculation store Test', () => {
-    let storeData = null
-
-    beforeEach(() => {
-        setActivePinia(createPinia())
-        storeData = useHotelsDataStore()
-    })
 
     
     it('test calculating price of a single hotel', () => {
-        const hotel = storeData.createHotelFromObject({
-            "name": "Test Lakewood",
-            "slug": "test_lakewood",
-            "id": 1,
-            "rating": 3,
-            "prices": {
-                "weekday": {
-                    "regular": 110,
-                    "reward": 80
-                },
-                "weekend": {
-                    "regular": 90,
-                    "reward": 80
-                }
-            },
-            "image": "images/lakewood.jpeg"
-        });
+        const hotel = new HotelBuilder()
+            .setName('Test Lakewood')
+            .setSlug('test_lakewood')
+            .setId(1)
+            .setRating(3)
+            .setPriceWeekday(createPriceFromObject({"regular": 110, "reward": 80}))
+            .setPriceWeekend(createPriceFromObject({"regular": 90, "reward": 80}))
+            .build();
         const dates = [new Date(2009, 3, 26), new Date(2009, 3, 27), new Date(2009, 3, 28)]
 
         expect(calculatePriceOfHotel(hotel, dates, false)).toEqual( 310 )
@@ -38,59 +22,30 @@ describe('Booking calculation store Test', () => {
 
 
     it('test calculating best booking option', () => {
-        const hotelA = storeData.createHotelFromObject({
-            "name": "Test Lakewood",
-            "slug": "test_lakewood",
-            "id": 1,
-            "rating": 3,
-            "prices": {
-                "weekday": {
-                    "regular": 110,
-                    "reward": 80
-                },
-                "weekend": {
-                    "regular": 90,
-                    "reward": 80
-                }
-            },
-            "image": "images/lakewood.jpeg"
-        });
-
-        const hotelB = storeData.createHotelFromObject({
-            "name": "Test Bridgewood",
-            "slug": "test_bridgewood",
-            "id": 2,
-            "rating": 4,
-            "prices": {
-                "weekday": {
-                    "regular": 160,
-                    "reward": 110
-                },
-                "weekend": {
-                    "regular": 60,
-                    "reward": 50
-                }
-            },
-            "image": "images/bridgewood.jpeg"
-        });
-
-        const hotelC = storeData.createHotelFromObject({
-            "name": "Test Ridgewood",
-            "slug": "test_ridgewood",
-            "id": 3,
-            "rating": 5,
-            "prices": {
-                "weekday": {
-                    "regular": 220,
-                    "reward": 100
-                },
-                "weekend": {
-                    "regular": 150,
-                    "reward": 40
-                }
-            },
-            "image": "images/ridgewood.jpeg"
-        });
+        const hotelA = new HotelBuilder()
+            .setName('Test Lakewood')
+            .setSlug('test_lakewood')
+            .setId(1)
+            .setRating(3)
+            .setPriceWeekday(createPriceFromObject({"regular": 110, "reward": 80}))
+            .setPriceWeekend(createPriceFromObject({"regular": 90, "reward": 80}))
+            .build();
+        const hotelB = new HotelBuilder()
+            .setName('Test Bridgewood')
+            .setSlug('test_bridgewood')
+            .setId(2)
+            .setRating(4)
+            .setPriceWeekday(createPriceFromObject({"regular": 160, "reward": 110}))
+            .setPriceWeekend(createPriceFromObject({"regular": 60, "reward": 50}))
+            .build();
+        const hotelC = new HotelBuilder()
+            .setName('Test Ridgewood')
+            .setSlug('test_ridgewood')
+            .setId(3)
+            .setRating(5)
+            .setPriceWeekday(createPriceFromObject({"regular": 220, "reward": 100}))
+            .setPriceWeekend(createPriceFromObject({"regular": 150, "reward": 40}))
+            .build();
         const hotelList = [hotelA, hotelB, hotelC]
         const dates = [new Date(2009, 3, 16), new Date(2009, 3, 17), new Date(2009, 3, 18)]
 
@@ -98,59 +53,30 @@ describe('Booking calculation store Test', () => {
     })
 
     it('test calculating best booking option with rewards and a value tie', () => {
-        const hotelA = storeData.createHotelFromObject({
-            "name": "Test Lakewood",
-            "slug": "test_lakewood",
-            "id": 1,
-            "rating": 3,
-            "prices": {
-                "weekday": {
-                    "regular": 110,
-                    "reward": 80
-                },
-                "weekend": {
-                    "regular": 90,
-                    "reward": 80
-                }
-            },
-            "image": "images/lakewood.jpeg"
-        });
-
-        const hotelB = storeData.createHotelFromObject({
-            "name": "Test Bridgewood",
-            "slug": "test_bridgewood",
-            "id": 2,
-            "rating": 4,
-            "prices": {
-                "weekday": {
-                    "regular": 160,
-                    "reward": 110
-                },
-                "weekend": {
-                    "regular": 60,
-                    "reward": 50
-                }
-            },
-            "image": "images/bridgewood.jpeg"
-        });
-
-        const hotelC = storeData.createHotelFromObject({
-            "name": "Test Ridgewood",
-            "slug": "test_ridgewood",
-            "id": 3,
-            "rating": 5,
-            "prices": {
-                "weekday": {
-                    "regular": 220,
-                    "reward": 100
-                },
-                "weekend": {
-                    "regular": 150,
-                    "reward": 40
-                }
-            },
-            "image": "images/ridgewood.jpeg"
-        });
+        const hotelA = new HotelBuilder()
+            .setName('Test Lakewood')
+            .setSlug('test_lakewood')
+            .setId(1)
+            .setRating(3)
+            .setPriceWeekday(createPriceFromObject({"regular": 110, "reward": 80}))
+            .setPriceWeekend(createPriceFromObject({"regular": 90, "reward": 80}))
+            .build();
+        const hotelB = new HotelBuilder()
+            .setName('Test Bridgewood')
+            .setSlug('test_bridgewood')
+            .setId(2)
+            .setRating(4)
+            .setPriceWeekday(createPriceFromObject({"regular": 160, "reward": 110}))
+            .setPriceWeekend(createPriceFromObject({"regular": 60, "reward": 50}))
+            .build();
+        const hotelC = new HotelBuilder()
+            .setName('Test Ridgewood')
+            .setSlug('test_ridgewood')
+            .setId(3)
+            .setRating(5)
+            .setPriceWeekday(createPriceFromObject({"regular": 220, "reward": 100}))
+            .setPriceWeekend(createPriceFromObject({"regular": 150, "reward": 40}))
+            .build();
         const hotelList = [hotelA, hotelB, hotelC]
         const dates = [new Date(2009, 3, 26), new Date(2009, 3, 27), new Date(2009, 3, 28)]
         
