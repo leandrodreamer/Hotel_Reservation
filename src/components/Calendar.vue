@@ -27,7 +27,7 @@
 </template>
   
 <script>
-import { compareDates } from "../services/dateUtils"
+import { compareDates } from "../services/date-service"
 
 export default {
     props: {
@@ -162,4 +162,4 @@ export default {
     }
 }
 </style>
-  
+  ../services/date-service

@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import { useHotelsDataStore } from '../stores/hotelsDataStore';
+import { useHotelsDataStore } from '../stores/hotels-data-store';
 import { useRoute } from 'vue-router';
 import StarsRating from '@/components/StarsRating.vue';
 

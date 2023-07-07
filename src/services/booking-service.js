@@ -1,5 +1,5 @@
 
-import { isWeekend } from "./dateUtils"
+import { isWeekend } from "./date-service"
 
 export const calculatePriceOfHotel = (hotel, dates, isReward) => {
     if (!hotel) {

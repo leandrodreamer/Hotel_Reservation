@@ -1,6 +1,5 @@
-import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { createHotelListFromJsonList, getHotelById, getHotelBySlug } from '../services/hotelsUtils'
+import { createHotelListFromJsonList, getHotelById, getHotelBySlug } from '../services/hotels-service'
 import hotelsDataJson from '@/hotelsData.json'
 
 export const useHotelsDataStore = defineStore('hotelsData', () => {

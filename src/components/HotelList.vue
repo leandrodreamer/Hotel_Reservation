@@ -1,7 +1,7 @@
 <script setup>
 import hotelCard from '../components/HotelCard.vue'
-import { useHotelsDataStore } from '../stores/hotelsDataStore'
-import { useBookingStore } from '../stores/bookingStore'
+import { useHotelsDataStore } from '../stores/hotels-data-store'
+import { useBookingStore } from '../stores/booking-store'
 
 const hotelsDataStore = useHotelsDataStore()
 const bookingStore = useBookingStore()

@@ -23,7 +23,7 @@
 <script setup>
 import { onMounted } from 'vue';
 import Calendar from '../components/Calendar.vue'
-import { useBookingStore } from '../stores/bookingStore'
+import { useBookingStore } from '../stores/booking-store'
 
 const bookingStore = useBookingStore()
 

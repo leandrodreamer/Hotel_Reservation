@@ -32,8 +32,8 @@
 <script>
 import { defineComponent } from 'vue';
 import { RouterLink } from 'vue-router';
-import { useHotelsDataStore } from '../stores/hotelsDataStore';
-import { useBookingStore } from '../stores/bookingStore';
+import { useHotelsDataStore } from '../stores/hotels-data-store';
+import { useBookingStore } from '../stores/booking-store';
 import StarsRating from '@/components/StarsRating.vue';
 
 export default defineComponent({

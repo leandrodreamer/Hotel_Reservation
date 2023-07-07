@@ -1,7 +1,7 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { useHotelsDataStore } from './hotelsDataStore'
-import { getCheapest, calculatePriceOfHotel } from "../services/bookingUtils"
+import { useHotelsDataStore } from './hotels-data-store'
+import { getCheapest, calculatePriceOfHotel } from "../services/booking-service"
 
 export const useBookingStore = defineStore('booking', () => {
     const hotelsDataStore = useHotelsDataStore()

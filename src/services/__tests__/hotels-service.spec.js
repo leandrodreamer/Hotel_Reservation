@@ -1,21 +1,18 @@
 import { describe, it, expect } from 'vitest'
 import { 
-    createPriceFromObject, 
-    HotelBuilder, 
+    Price,
+    HotelBuilder,
     createHotelFromObject, 
     createHotelListFromJsonList,
     getHotelById,
     getHotelBySlug 
-} from '../hotelsUtils'
+} from '../hotels-service'
 
-describe('Booking calculation store Test', () => {
+describe('Hotel classes Test', () => {
+
     it('Create a price object', () => {
-        expect(createPriceFromObject(
-            {
-                "regular": 110,
-                "reward": 80
-            }
-        ).reward === 80).toBeTruthy()
+        const price = new Price(110, 80)
+        expect(price.reward).toBe(80)
     })
 
     it('Create a hotel object', () => {
@@ -24,8 +21,8 @@ describe('Booking calculation store Test', () => {
             .setSlug('test_lakewood')
             .setId(1)
             .setRating(3)
-            .setPriceWeekday(createPriceFromObject({"regular": 110, "reward": 80}))
-            .setPriceWeekend(createPriceFromObject({"regular": 90, "reward": 80}))
+            .setPriceWeekday(new Price(110, 80))
+            .setPriceWeekend(new Price(90, 80))
             .build();
         expect(hotel.id).toEqual(1)
         expect(hotel.name).toMatch('Test Lakewood')
@@ -115,6 +112,9 @@ describe('Booking calculation store Test', () => {
         }])
         expect(hotel.length).toEqual(3)
     })
+})
+
+describe('Hotel calculations Test', () => {
 
     it('Test searching hotel by id', () => {
         const hotelB = new HotelBuilder()
@@ -122,16 +122,16 @@ describe('Booking calculation store Test', () => {
             .setSlug('test_bridgewood')
             .setId(2)
             .setRating(4)
-            .setPriceWeekday(createPriceFromObject({"regular": 160, "reward": 110}))
-            .setPriceWeekend(createPriceFromObject({"regular": 60, "reward": 50}))
+            .setPriceWeekday(new Price(160, 110))
+            .setPriceWeekend(new Price(60, 50))
             .build();
         const hotelC = new HotelBuilder()
             .setName('Test Ridgewood')
             .setSlug('test_ridgewood')
             .setId(3)
             .setRating(5)
-            .setPriceWeekday(createPriceFromObject({"regular": 220, "reward": 100}))
-            .setPriceWeekend(createPriceFromObject({"regular": 150, "reward": 40}))
+            .setPriceWeekday(new Price(220, 100))
+            .setPriceWeekend(new Price(150, 40))
             .build();
         const hotelList = [hotelB, hotelC]
         const hotel = getHotelById(2, hotelList)
@@ -146,16 +146,16 @@ describe('Booking calculation store Test', () => {
             .setSlug('test_bridgewood')
             .setId(2)
             .setRating(4)
-            .setPriceWeekday(createPriceFromObject({"regular": 160, "reward": 110}))
-            .setPriceWeekend(createPriceFromObject({"regular": 60, "reward": 50}))
+            .setPriceWeekday(new Price(160, 110))
+            .setPriceWeekend(new Price(60, 50))
             .build();
         const hotelC = new HotelBuilder()
             .setName('Test Ridgewood')
             .setSlug('test_ridgewood')
             .setId(3)
             .setRating(5)
-            .setPriceWeekday(createPriceFromObject({"regular": 220, "reward": 100}))
-            .setPriceWeekend(createPriceFromObject({"regular": 150, "reward": 40}))
+            .setPriceWeekday(new Price(220, 100))
+            .setPriceWeekend(new Price(150, 40))
             .build();
         const hotelList = [hotelB, hotelC]
         const hotel = getHotelBySlug("test_ridgewood", hotelList)
