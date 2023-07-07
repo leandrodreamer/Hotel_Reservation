@@ -15,7 +15,8 @@
                     "reward": 80
                 }
             },
-            "image": "images/lakewood.jpeg"
+            "image": "images/lakewood.jpg",
+            "description": "Nestled amidst the tropical beauty of Miami, Lakewood offers a tranquil retreat for travelers seeking a peaceful escape. With its spacious rooms and elegant decor, this hotel provides a comfortable and relaxing atmosphere. Guests can indulge in the breathtaking views of the surrounding landscapes and enjoy the warm hospitality that Miami Breeze Resorts is renowned for."
         },
 
         {
@@ -33,7 +34,8 @@
                     "reward": 50
                 }
             },
-            "image": "images/bridgewood.jpeg"
+            "image": "images/bridgewood.jpg",
+            "description": "Located in the heart of Miami, Bridgewood offers a perfect blend of luxury and convenience. The hotel boasts stylish accommodations and modern amenities that cater to the discerning traveler. Guests can immerse themselves in the vibrant city life, exploring nearby attractions and indulging in fine dining experiences. Bridgewood is an ideal choice for those seeking a sophisticated and memorable stay."
         },
 
         {
@@ -51,7 +53,8 @@
                     "reward": 40
                 }
             },
-            "image": "images/ridgewood.jpeg"
+            "image": "images/ridgewood.jpg",
+            "description": "Experience unparalleled luxury at Ridgewood, where opulence meets exceptional service. This five-star hotel sets the standard for elegance and sophistication. The meticulously designed rooms offer a harmonious blend of comfort and style, while the state-of-the-art facilities cater to every need. Guests can indulge in the finest amenities and pamper themselves with rejuvenating spa treatments. Ridgewood promises an unforgettable stay that exceeds all expectations."
         }
     ]
 }

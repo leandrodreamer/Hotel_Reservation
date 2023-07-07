@@ -47,6 +47,7 @@ onMounted(() => {
 .filter-fields {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     background-color: var(--background-color);
     margin: 20px;
     padding: 20px;
@@ -105,4 +106,4 @@ onMounted(() => {
     gap: 30%;
     padding: 10px 0;
 }
-</style>../stores/bookingStore
+</style>

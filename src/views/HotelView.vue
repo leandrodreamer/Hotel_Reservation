@@ -8,6 +8,7 @@
                 <h1>{{ hotel.name }}</h1>
             </div>
             <StarsRating :stars="hotel.rating" />
+            <p>{{ hotel.description }}</p>
             <div class="prices">
                 <div class="price">
                     <h4>Normal: </h4>
@@ -41,6 +42,9 @@ const hotel = hotelsDataStore.getHotelInStoreById(parseInt(route.params.id));
     flex-direction: column;
     margin: 0 10%;
     padding-bottom: 50px;
+    p {
+        margin: 10px;
+    }
 }
 
 .hotel-image {

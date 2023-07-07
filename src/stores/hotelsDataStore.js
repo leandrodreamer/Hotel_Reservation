@@ -13,7 +13,7 @@ export const useHotelsDataStore = defineStore('hotelsData', () => {
   }
 
   function getHotelInStoreBySlug(slug) {
-    return getHotelById(slug, hotels);
+    return getHotelBySlug(slug, hotels);
   }
 
   return { 

@@ -6,7 +6,7 @@ export class Price {
 }
 
 export class Hotel {
-    constructor(name, slug, id, rating, priceWeekday, priceWeekend, image) {
+    constructor(name, slug, id, rating, priceWeekday, priceWeekend, image, description) {
         this.name = name;
         this.slug = slug;
         this.id = id;
@@ -14,6 +14,7 @@ export class Hotel {
         this.priceWeekday = priceWeekday;
         this.priceWeekend = priceWeekend;
         this.image = image;
+        this.description = description;
     }
 }
 
@@ -26,6 +27,7 @@ export class HotelBuilder {
         this.priceWeekday = null;
         this.priceWeekend = null;
         this.image = '';
+        this.description = '';
     }
 
     setName(name) {
@@ -63,6 +65,11 @@ export class HotelBuilder {
         return this;
     }
 
+    setDescription(description) {
+        this.description = description;
+        return this;
+    }
+
     build() {
         return new Hotel(
             this.name,
@@ -71,7 +78,8 @@ export class HotelBuilder {
             this.rating,
             this.priceWeekday,
             this.priceWeekend,
-            this.image
+            this.image,
+            this.description
         );
     }
 }
@@ -84,7 +92,7 @@ export const createPriceFromObject = (object) => {
 export const createHotelFromObject = (object) => {
     const priceWeekday = createPriceFromObject(object.prices.weekday);
     const priceWeekend = createPriceFromObject(object.prices.weekend);
-
+    
     return new HotelBuilder()
         .setName(object.name)
         .setSlug(object.slug)
@@ -93,6 +101,7 @@ export const createHotelFromObject = (object) => {
         .setPriceWeekday(priceWeekday)
         .setPriceWeekend(priceWeekend)
         .setImage(object.image)
+        .setDescription(object.description)
         .build();
 }
 
