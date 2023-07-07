@@ -28,6 +28,12 @@
   
 <script>
 export default {
+    props: {
+        propSelected: {
+            type: Array,
+            required: false
+        }
+    },
     data() {
         return {
             today: new Date(),
@@ -39,6 +45,9 @@ export default {
         };
     },
     created() {
+        if (this.$props.propSelected){
+            this.selected = this.$props.propSelected
+        }
         this.generateCalendar();
     },
     methods: {

@@ -4,8 +4,8 @@ import HotelList from '../components/HotelList.vue'
 </script>
 
 <template>
-  <body>
+  <div>
     <FilterFields />
     <HotelList />
-  </body>
+  </div>
 </template>

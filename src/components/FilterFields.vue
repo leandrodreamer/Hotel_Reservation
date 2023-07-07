@@ -15,12 +15,13 @@
                         bookingCalculateStore.lowerPrice.totalPrice }}
                 </p>
             </div>
-            <Calendar class="filter-column" @selected-updated="calendarSelectedUpdated" />
+            <Calendar :propSelected="bookingCalculateStore.selectedDates" class="filter-column" @selected-updated="calendarSelectedUpdated" />
         </div>
     </div>
 </template>
 
 <script setup>
+import { onMounted } from 'vue';
 import Calendar from '../components/Calendar.vue'
 import { useBookingCalculateStore } from '../stores/bookingCalculateStore'
 
@@ -29,6 +30,10 @@ const bookingCalculateStore = useBookingCalculateStore()
 function calendarSelectedUpdated(selection) {
     bookingCalculateStore.selectedDates = selection
 }
+Calendar.selected = bookingCalculateStore.selectedDates
+onMounted(() => {
+    Calendar.selected = bookingCalculateStore.selectedDates
+})
 </script>
 
 <style lang="scss">

@@ -1,7 +1,7 @@
 <template>
     <header>
         <img src="/favicon.ico" alt="">
-        <h1>Miami Breeze Resorts</h1>
+        <h1><router-link to="/">Miami Breeze Resorts</router-link></h1>
     </header>
 </template>
 

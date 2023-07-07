@@ -1,14 +1,13 @@
 <template>
-    <div class="hotel-card" :style="{ 'background-image': `url(${hotel.image})` }" v-if="hotel">
+    <RouterLink :to="`/${hotel.id}/${hotel.slug}`" class="hotel-card" :style="{ 'background-image': `url(${hotel.image})` }"
+        v-if="hotel">
         <div class="bg-overlay"></div>
         <div class="title content">
             <h2>{{ hotel.name }}</h2>
             <p v-if="!bookingCalculateStore.isSelectedDatesEmpty">(${{ bookingCalculateStore.calculatePriceOfHotel(hotel)
             }})</p>
         </div>
-        <div class="stars content">
-            <span class="star" v-for="n in hotel.rating" :key="n">&#9733;</span>
-        </div>
+        <StarsRating class="content" :stars="hotel.rating" />
         <div class="prices content">
             <div class="price">
                 <h4>Weekday:</h4>
@@ -23,7 +22,7 @@
                 <p>${{ hotel.priceWeekend.reward }}</p>
             </div>
         </div>
-    </div>
+    </RouterLink>
     <div v-else>
         <p>No hotel found.</p>
     </div>
@@ -31,8 +30,10 @@
   
 <script>
 import { defineComponent } from 'vue';
+import { RouterLink } from 'vue-router';
 import { useHotelsDataStore } from '../stores/hotelsDataStore';
 import { useBookingCalculateStore } from '../stores/bookingCalculateStore';
+import StarsRating from '@/components/StarsRating.vue';
 
 export default defineComponent({
     props: {
@@ -55,6 +56,9 @@ export default defineComponent({
         hotel() {
             return this.hotelsDataStore.getHotelById(this.hotelId);
         }
+    },
+    components: {
+        StarsRating
     }
 });
 </script>
@@ -96,18 +100,6 @@ export default defineComponent({
     .content {
         position: relative;
         z-index: 2;
-    }
-
-    .stars {
-        margin-bottom: 10px;
-        background-color: #000000b0;
-        padding: 0 6px;
-        width: fit-content;
-        border-radius: 20px;
-
-        .star {
-            color: gold;
-        }
     }
 
     .prices {
