@@ -19,7 +19,7 @@ const bookingStore = useBookingStore()
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: var(--background-color);
+    background-color: $background-color;
     padding: 20px;
 }
 

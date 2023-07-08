@@ -76,7 +76,7 @@ export default defineComponent({
     max-width: 300px;
     min-width: 250px;
     margin: 20px;
-    outline: 3px solid var(--primary-color);
+    outline: 3px solid $primary-color;
 
     .bg-overlay {
         position: absolute;

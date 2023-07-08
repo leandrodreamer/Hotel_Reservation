@@ -9,7 +9,7 @@
 header {
     display: flex;
     align-items: center;
-    background-color: var(--primary-color);
+    background-color: $primary-color;
     color: azure;
     padding: 10px 10px 10px 20px;
 

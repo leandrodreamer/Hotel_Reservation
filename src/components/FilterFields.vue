@@ -48,11 +48,11 @@ onMounted(() => {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: var(--background-color);
+    background-color: $background-color;
     margin: 20px;
     padding: 20px;
     border-radius: 20px;
-    outline: 3px solid var(--primary-color);
+    outline: 3px solid $primary-color;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
 }
 
@@ -88,8 +88,8 @@ onMounted(() => {
     transition: border-color 0.3s ease;
 
     &:checked {
-        border-color: var(--primary-color);
-        background-color: var(--primary-color);
+        border-color: $primary-color;
+        background-color: $primary-color;
     }
 }
 
