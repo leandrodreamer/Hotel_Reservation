@@ -4,6 +4,8 @@ This project demonstrates a Vue application that enables users to find the most 
 It showcases the integration of Vue with Pinia and Router, implementation of design patterns such as the 'Builder' pattern, adherence to the SOLID principles, reusable components, and the inclusion of easily understandable tests.
 The codebase emphasizes clean architecture, maintainability, and testability to provide an optimal user experience and facilitate future development.
 
+To solve this problem i created a class to represent an hotel and a set of methods to process the data (mainly for calculating prices and finding the most affordable hotel), in a way that implementing new methods to process it in new ways and expand the dataset would be straight forward.
+
 ## Features
 
 - Find the most affordable hotel option based on specified dates and loyalty program discount.
